@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <script  defer src = "index.js"></script>
     <link rel = "stylesheet" href = "styles.css">
-    <script src = "index.js"></script>
 </head>
 <body>
     <div class = "header">
@@ -13,10 +13,54 @@
     </div>
     <div class= "game-console">
         <div class = "player-choice-score">
-            <h3 id = "player-one">Player One</h3>
+            
+            <div class = "display-score">
+                <h3 id = "player-one">Player One</h3>
+                <div class = "player-score">0</div>
+            </div>
+            
+            
+            <div class= "rock">
+                <img src = "rock.png" width="100" height="100">
+                <button type="button" class = "Rock" id = "human">Rock</button>
+            </div>
+            <div class= "paper">
+                <img src = "paper.png" width="100" height="100">
+                <button type="button" class = "Paper" id = "human">Paper</button>
+            </div>
+            <div class= "scissor">
+                <img src = "scissors.png" width="100" height="100">
+                <button type="button" class = "Scissors" id = "human">Scissors</button>
+            </div>
+        
         </div>
-        <div class = "display-result"></div>
-        <div class = "computer-choice-score"></div>
+        
+        <div class = "display-result">
+            <div class = "option">Let's Play! Choose an option to start!</div>
+        </div>
+            
+
+        <div class = "computer-choice-score">
+
+            <div class = "display-score">
+                <h3 id = "player-computer">Player Computer</h3>
+                <div class = "computer-score">0</div>
+            </div>
+            
+            
+            <div class= "rock">
+                <img src = "rock.png" width="100" height="100">
+                <button type="button" class = "Rock" id = "computer">Rock</button>
+            </div>
+            <div class= "paper">
+                <img src = "paper.png" width="100" height="100">
+                <button type="button" class = "Paper" id = "computer">Paper</button>
+            </div>
+            <div class= "scissor">
+                <img src = "scissors.png" width="100" height="100">
+                <button type="button" class = "Scissors" id = "computer">Scissors</button>
+            </div>
+        </div>
     </div>
 
 </body>

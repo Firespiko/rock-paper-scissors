@@ -23,21 +23,22 @@ function getHumanChoice(computerChoices) {
 function playRound(humanChoice,computerChoice) {
     if ((humanChoice === "rock" && computerChoice == "scissors") || (humanChoice === "scissors" && computerChoice == "paper")
     || (humanChoice === "paper" && computerChoice == "rock")){
-        console.log(`You Win! ${humanChoice} Beats ${computerChoice}`);
         humanScore++;
+        return (`You Win! ${humanChoice} Beats ${computerChoice}`);
+        
     }
     else if((humanChoice === "rock" && computerChoice == "paper") || (humanChoice === "scissors" && computerChoice == "rock")
         || (humanChoice === "paper" && computerChoice == "scissors")){
-        console.log(`You Lose! ${computerChoice} Beats ${humanChoice}`);
         computerScore++;
+        return(`You Lose! ${computerChoice} Beats ${humanChoice}`);
     }
     
     else if(humanChoice === computerChoice){
-        console.log("The game is draw! No point is given to you or the computer!")
+        return("The game is draw! No point is given to you or the computer!")
     }
 
     else {
-        console.log("You gave an Invalid Input")
+        return("You gave an Invalid Input")
     }
 
 }
@@ -68,3 +69,85 @@ function playGame(computerChoices){
 let humanScore = 0;
 let computerScore = 0;
 let computerChoices = ["rock","paper","scissors"]
+
+/*
+Button functions
+On click
+clear the contents display-result
+add a empty div upside
+add rock paper or scissors image onto the display result
+call the computer function and store it in a variable
+get the users input and store it in a variable
+pass the variables playRound 
+and change the text content of the div which was empty 
+add the scores to the human and computer display
+check if someone has won
+*/
+
+const playerScore = document.querySelector(".player-score");
+const computersScore = document.querySelector(".computer-score");
+
+const displayResult = document.querySelector(".display-result");
+
+const rock = document.querySelector('.rock #human');
+const paper = document.querySelector('.paper #human');
+const scissors = document.querySelector('.scissor #human');
+
+choiceButtons = [rock,paper,scissors];
+
+for(let choiceIndex in choiceButtons) {
+    choiceButtons[choiceIndex].addEventListener('click',(event) => {
+        const childNodes = displayResult.childNodes;
+
+        while (childNodes.length) {
+            divElement.removeChild(childNodes[0]);
+        }
+
+        userChoice = choiceButtons[choiceIndex].textContent.toLowerCase();
+        computerChoice = getComputerChoice(computerChoices);
+
+        const emptyDiv = document.createElement("div");
+        const imageDiv = document.createElement("div");
+        const humanChoiceImage = document.createElement("img");
+        const computerChoiceImage = document.createElement("img");
+
+        displayResult.style.display = 'flex';
+        displayResult.style.flexDirection = 'column';
+        displayResult.style.justifyContent = 'space-evenly';
+        displayResult.style.alignItems = 'center';
+        
+        
+        emptyDiv.style.display = 'flex';
+        emptyDiv.style.flexDirection = 'row';
+        emptyDiv.style.justifyContent = 'center';
+        emptyDiv.style.alignItems = 'center';
+
+        imageDiv.style.display = 'flex';
+        imageDiv.style.flexDirection = 'row';
+        imageDiv.style.justifyContent = 'space-between';
+        imageDiv.style.alignItems = 'center';
+
+        humanChoiceImage.setAttribute('src', `${userChoice}.png`);
+        humanChoiceImage.setAttribute('width', '100');
+        humanChoiceImage.setAttribute('height', '100');
+
+        computerChoiceImage.setAttribute('src', `${computerChoice}.png`);
+        computerChoiceImage.setAttribute('width', '100');
+        computerChoiceImage.setAttribute('height', '100');
+
+        imageDiv.appendChild(humanChoiceImage);
+        imageDiv.appendChild(computerChoiceImage);
+
+        emptyDiv.textContent = playRound(userChoice,computerChoice);
+
+        displayResult.appendChild(emptyDiv);
+        displayResult.appendChild(imageDiv);
+
+        playerScore.textContent = String(humanScore);
+        computersScore.textContent = String(computerScore);
+
+
+
+        }
+    )
+}
