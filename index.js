@@ -3,22 +3,6 @@ function getComputerChoice(computerChoices) {
     return computerChoices[randomNumber];
 }
 
-function getHumanChoice(computerChoices) {
-    validChoice = false;
-    
-    while(!validChoice){
-        var humanChoice = prompt("Enter your choice: ");
-        humanChoice = humanChoice.trim().toLowerCase();
-        if (computerChoices.includes(humanChoice) === true){
-            validChoice = true;
-        }
-        else{
-            console.log("You entered an Invalid Input!\nPlease enter an valid one!")
-        }
-
-    }
-    return humanChoice;
-}
 
 function playRound(humanChoice,computerChoice) {
     if ((humanChoice === "rock" && computerChoice == "scissors") || (humanChoice === "scissors" && computerChoice == "paper")
@@ -42,56 +26,79 @@ function playRound(humanChoice,computerChoice) {
     }
 
 }
+function playAgain(){
+    const playAgain = document.createElement("button");
+    playAgain.textContent = "Play Again";
+    playAgain.style.padding = '10px';
+    playAgain.addEventListener('click', () => {
+        rock.disabled = false;
+        paper.disabled = false;
+        scissors.disabled = false;
+        const childNodes = displayResult.childNodes;
 
-function playGame(computerChoices){    
-    let gamesPlayed = 5;
+        while (childNodes.length) {
+            displayResult.removeChild(childNodes[0]);
+        }
+        const welcomeMessage = document.createElement("div");
+        welcomeMessage.textContent = "Let's Play! Click on an option to start!";
+        welcomeMessage.style.fontSize = '22px';
+        displayResult.appendChild(welcomeMessage);
+        humanScore = 0;
+        computerScore = 0;
+        playerScore.textContent = String(humanScore);
+        computersScore.textContent = String(computerScore);
+    }
+    )
+    displayResult.appendChild(playAgain);
+}
+function checkWinner(){    
     
-    while(gamesPlayed > 0){
-        const humanSelection = getHumanChoice(computerChoices);
-        const computerSelection = getComputerChoice(computerChoices);
-        playRound(humanSelection, computerSelection);
-        gamesPlayed--;
-    }
-    
-    if (humanScore > computerScore) {
-        console.log(`You won with ${humanScore} Points`);
+    if (humanScore === 5) {
+        const childNodes = displayResult.childNodes;
+
+        while (childNodes.length) {
+            displayResult.removeChild(childNodes[0]);
+        }
+        displayResult.style.fontSize = "46px";
+        displayResult.style.textAlign = 'center';
+        displayResult.textContent = 'You Won!!';
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+        playAgain();
     }
 
-    else if (computerScore > humanScore) {
-        console.log(`You lost with ${humanScore} Points while the computer got ${computerScore}`)
+    else if (computerScore === 5) {
+        const childNodes = displayResult.childNodes;
+
+        while (childNodes.length) {
+            displayResult.removeChild(childNodes[0]);
+        }
+        displayResult.style.fontSize = "46px";
+        displayResult.style.textAlign = 'center';
+        displayResult.textContent = 'You lost!!';
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+        playAgain();
     }
 
-    else {
-        console.log("The game is a Draw! No One Won")
-    }
+    else {}
 }
 
 let humanScore = 0;
 let computerScore = 0;
-let computerChoices = ["rock","paper","scissors"]
+let computerChoices = ["rock","paper","scissors"];
 
-/*
-Button functions
-On click
-clear the contents display-result
-add a empty div upside
-add rock paper or scissors image onto the display result
-call the computer function and store it in a variable
-get the users input and store it in a variable
-pass the variables playRound 
-and change the text content of the div which was empty 
-add the scores to the human and computer display
-check if someone has won
-*/
 
 const playerScore = document.querySelector(".player-score");
 const computersScore = document.querySelector(".computer-score");
 
 const displayResult = document.querySelector(".display-result");
 
-const rock = document.querySelector('.rock #human');
-const paper = document.querySelector('.paper #human');
-const scissors = document.querySelector('.scissor #human');
+const rock = document.querySelector('.Rock#human');
+const paper = document.querySelector('.Paper#human');
+const scissors = document.querySelector('.Scissors#human');
 
 choiceButtons = [rock,paper,scissors];
 
@@ -100,7 +107,7 @@ for(let choiceIndex in choiceButtons) {
         const childNodes = displayResult.childNodes;
 
         while (childNodes.length) {
-            divElement.removeChild(childNodes[0]);
+            displayResult.removeChild(childNodes[0]);
         }
 
         userChoice = choiceButtons[choiceIndex].textContent.toLowerCase();
@@ -114,31 +121,34 @@ for(let choiceIndex in choiceButtons) {
         displayResult.style.display = 'flex';
         displayResult.style.flexDirection = 'column';
         displayResult.style.justifyContent = 'space-evenly';
-        displayResult.style.alignItems = 'center';
-        
+        displayResult.style.alignItems = 'center';      
         
         emptyDiv.style.display = 'flex';
         emptyDiv.style.flexDirection = 'row';
         emptyDiv.style.justifyContent = 'center';
         emptyDiv.style.alignItems = 'center';
+        emptyDiv.style.fontSize = '22px';
+        emptyDiv.style.textAlign = 'center';
 
         imageDiv.style.display = 'flex';
         imageDiv.style.flexDirection = 'row';
         imageDiv.style.justifyContent = 'space-between';
         imageDiv.style.alignItems = 'center';
+        imageDiv.style.gap = '66px';
 
         humanChoiceImage.setAttribute('src', `${userChoice}.png`);
-        humanChoiceImage.setAttribute('width', '100');
-        humanChoiceImage.setAttribute('height', '100');
+        humanChoiceImage.setAttribute('width', '200');
+        humanChoiceImage.setAttribute('height', '200');
 
         computerChoiceImage.setAttribute('src', `${computerChoice}.png`);
-        computerChoiceImage.setAttribute('width', '100');
-        computerChoiceImage.setAttribute('height', '100');
+        computerChoiceImage.setAttribute('width', '200');
+        computerChoiceImage.setAttribute('height', '200');
 
         imageDiv.appendChild(humanChoiceImage);
         imageDiv.appendChild(computerChoiceImage);
 
         emptyDiv.textContent = playRound(userChoice,computerChoice);
+             
 
         displayResult.appendChild(emptyDiv);
         displayResult.appendChild(imageDiv);
@@ -146,6 +156,8 @@ for(let choiceIndex in choiceButtons) {
         playerScore.textContent = String(humanScore);
         computersScore.textContent = String(computerScore);
 
+
+        checkWinner();
 
 
         }
