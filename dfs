@@ -1,0 +1,29 @@
+[33mcommit 62d4d05bfb04f9776eef6ac0e6f9e84e47fa3a07[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/rps-ui[m[33m, [m[1;32mrps-ui[m[33m)[m
+Author: K.S.Adithya <adikarks@gmail.com>
+Date:   Sun May 19 12:28:01 2024 +0530
+
+    Project Complete
+
+[33mcommit 3e8ac2a83005343fb6711d47da66c70c56cba15f[m
+Author: K.S.Adithya <adikarks@gmail.com>
+Date:   Wed May 15 22:34:27 2024 +0530
+
+    Core Features were added which did DOM Manipulation
+
+[33mcommit 6ee12d2d05e17a2e3ba9fabec7bb449c73862033[m
+Author: K.S.Adithya <adikarks@gmail.com>
+Date:   Thu May 9 10:03:02 2024 +0530
+
+    Added CSS Styling but yet to finish the components inside the real game logic
+
+[33mcommit d4b6d59fdd0ee5b8a0ea43e3eb15f2069ba22583[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: K.S.Adithya <adikarks@gmail.com>
+Date:   Sun May 5 09:46:58 2024 +0530
+
+    Project Completed Without DOM Manipulation successfully
+
+[33mcommit e8cecbeae4a1d736fec7aecd42c18839bc7520fd[m
+Author: K.S.Adithya <adikarks@gmail.com>
+Date:   Sat May 4 19:20:01 2024 +0530
+
+    Added README.md
